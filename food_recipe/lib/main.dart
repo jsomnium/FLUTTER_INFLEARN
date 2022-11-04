@@ -87,7 +87,7 @@ class HomePage extends StatelessWidget {
                 border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.black),
                 ),
-								// 돋보기 아이콘
+                // 돋보기 아이콘
                 suffixIcon: IconButton(
                   icon: Icon(Icons.search),
                   onPressed: () {
@@ -124,7 +124,8 @@ class HomePage extends StatelessWidget {
                         imgUrl,
                         width: double.infinity, // 가득 채우기
                         height: 120,
-                        fit: BoxFit.cover, // 이미지 비율을 유지하며 주어진 width와 height를 가득 채우기
+                        fit: BoxFit
+                            .cover, // 이미지 비율을 유지하며 주어진 width와 height를 가득 채우기
                       ),
 
                       /// 배경 위에 글씨가 보이도록 반투명한 박스 추가
