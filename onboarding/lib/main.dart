@@ -69,7 +69,7 @@ class OnboardingPage extends StatelessWidget {
         done: Text("Done", style: TextStyle(fontWeight: FontWeight.w600)),
         onDone: () {
           // Done 클릭시 페이지 이동
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => HomePage()),
           );
