@@ -68,8 +68,36 @@ class OnboardingPage extends StatelessWidget {
         next: Text("Next", style: TextStyle(fontWeight: FontWeight.w600)),
         done: Text("Done", style: TextStyle(fontWeight: FontWeight.w600)),
         onDone: () {
-          // When done button is press
+          // Done 클릭시 페이지 이동
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => HomePage()),
+          );
         },
+      ),
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Home Page!"),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Center(
+          child: Text(
+            "환영합니다!",
+            style: TextStyle(
+              fontSize: 24,
+            ),
+          ),
+        ),
       ),
     );
   }
