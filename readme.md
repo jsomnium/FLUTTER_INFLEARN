@@ -6,3 +6,4 @@
 - miso_starbucks - 2주차 실습
 + onboarding - 3주차 학습, 패키지 파일 이용
 + 한 줄 일기
+ㅇ
