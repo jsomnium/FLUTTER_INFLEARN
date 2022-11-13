@@ -1,7 +1,8 @@
-import 'package:bucket_list_with_provider/bucket_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'bucket_service.dart';
 
 void main() {
   runApp(
@@ -40,8 +41,11 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("HomePage build");
     return Consumer<BucketService>(
       builder: (context, bucketService, child) {
+        print("HomePage Consumer build");
+        // BucketService의 bucketList 가져오기
         List<Bucket> bucketList = bucketService.bucketList;
         return Scaffold(
           appBar: AppBar(
@@ -70,10 +74,13 @@ class HomePage extends StatelessWidget {
                         icon: Icon(CupertinoIcons.delete),
                         onPressed: () {
                           // 삭제 버튼 클릭시
+                          bucketService.deleteBucket(index);
                         },
                       ),
                       onTap: () {
                         // 아이템 클릭시
+                        bucket.isDone = !bucket.isDone;
+                        bucketService.updateBucket(bucket, index);
                       },
                     );
                   },
