@@ -9,7 +9,7 @@
 
 + onboarding - 3주차 학습, 패키지 파일 이용
 + bucket_list - 3주차 학습, CRUD
-
-+ 한 줄 일기
++ bucket_list_with_provider - 3주차 학습, Provider 이용
++ diary - 3주차 실습, 한 줄 일기
 
 
