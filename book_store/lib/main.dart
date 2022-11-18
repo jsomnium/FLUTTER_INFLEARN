@@ -28,33 +28,68 @@ class MyApp extends StatelessWidget {
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
 
+  /// 검색어를 가져올 수 있도록 TextField와 연결해 줍니다.
+  final TextEditingController searchController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Consumer<BookService>(
       builder: (context, bookService, child) {
         return Scaffold(
           appBar: AppBar(
-              title: Text(
-                'Book Store',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+            backgroundColor: Colors.white,
+            centerTitle: false,
+            title: Text(
+              "Book Store",
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+            ),
+            actions: [
+              Container(
+                alignment: Alignment.bottomCenter,
+                padding: const EdgeInsets.only(right: 12),
+                child: Text(
+                  "total ${bookService.bookList.length}",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                  ),
                 ),
               ),
-              backgroundColor: Colors.white,
-              centerTitle: false,
-              actions: [
-                Container(
-                  alignment: Alignment.bottomCenter,
-                  padding: const EdgeInsets.only(right: 12),
-                  child: Text(
-                    'total ${bookService.bookList.length}',
-                    style: TextStyle(color: Colors.black, fontSize: 16),
+            ],
+
+            /// AppBar의 Bottom은 항상 PreferredSize 위젯으로 시작해야합니다.
+            bottom: PreferredSize(
+              preferredSize: Size(double.infinity, 72),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  controller: searchController,
+                  decoration: InputDecoration(
+                    hintText: "원하시는 책을 검색해주세요.",
+                    // 테두리
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black),
+                    ),
+
+                    /// 돋보기 아이콘
+                    suffixIcon: IconButton(
+                      icon: Icon(Icons.search),
+                      onPressed: () {
+                        // 돋보기 아이콘 클릭
+                      },
+                    ),
                   ),
-                )
-              ],
-              bottom: PreferredSize()),
+                  onSubmitted: (v) {
+                    // 엔터를 누르는 경우
+                  },
+                ),
+              ),
+            ),
+          ),
         );
       },
     );
