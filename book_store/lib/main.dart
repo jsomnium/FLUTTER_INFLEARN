@@ -31,6 +31,15 @@ class HomePage extends StatelessWidget {
   /// 검색어를 가져올 수 있도록 TextField와 연결해 줍니다.
   final TextEditingController searchController = TextEditingController();
 
+  /// 검색 함수
+  /// 엔터를 누르거나 돋보기 아이콘을 누를 때 호출
+  void search(BookService bookService) {
+    String keyword = searchController.text;
+    if (keyword.isNotEmpty) {
+      bookService.getBookList(keyword);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<BookService>(
@@ -80,11 +89,13 @@ class HomePage extends StatelessWidget {
                       icon: Icon(Icons.search),
                       onPressed: () {
                         // 돋보기 아이콘 클릭
+                        search(bookService);
                       },
                     ),
                   ),
                   onSubmitted: (v) {
                     // 엔터를 누르는 경우
+                    search(bookService);
                   },
                 ),
               ),
