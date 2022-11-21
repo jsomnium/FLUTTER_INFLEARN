@@ -1,6 +1,9 @@
 import 'package:book_store/book_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import 'book.dart';
 
 void main() {
   runApp(
@@ -101,6 +104,39 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
+          body: bookService.bookList.isEmpty
+              // bookList가 비어있는 경우
+              ? Center(
+                  child: Text(
+                    "검색어를 입력해 주세요",
+                    style: TextStyle(
+                      fontSize: 21,
+                      color: Colors.grey,
+                    ),
+                  ),
+                )
+              // bookList 보여주기
+              : ListView.builder(
+                  itemCount: bookService.bookList.length,
+                  itemBuilder: (context, index) {
+                    Book book = bookService.bookList[index];
+                    return ListTile(
+                      leading: Image.network(
+                        book.thumbnail,
+                        width: 80,
+                        height: 80,
+                        fit: BoxFit.cover,
+                      ),
+                      title: Text(book.title),
+                      subtitle: Text(book.subtitle),
+                      onTap: () {
+                        // 클릭시 previewLink 띄우기
+                        Uri uri = Uri.parse(book.previewLink);
+                        launchUrl(uri);
+                      },
+                    );
+                  },
+                ),
         );
       },
     );
